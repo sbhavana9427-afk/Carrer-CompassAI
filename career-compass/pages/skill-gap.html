@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Skill Gap Analysis — Career Compass 4.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+<div class="app">
+  <div id="sb"></div>
+  <main class="main">
+    <div id="tb"></div>
+
+    <div class="flex between wrap gap">
+      <div>
+        <h1 class="page-title">Skill Gap Analysis</h1>
+        <p class="page-sub">Compare your current skills with industry demand for your target career.</p>
+      </div>
+      <div class="flex gap-sm">
+        <label class="ux-066" for="target">Target role</label>
+        <select id="target" class="ux-083" title="Target role">
+          <option>Data Scientist</option>
+          <option>AI/ML Engineer</option>
+          <option>Full-Stack Developer</option>
+          <option>Cloud Engineer</option>
+          <option>Cybersecurity Analyst</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid grid-3 ux-037" >
+      <div class="glass card">
+        <div class="lbl muted ux-005" >Skills owned</div>
+        <div class="ux-060" id="k-owned">7 / 12</div>
+        <div class="progress"><span id="p-owned" class="ux-084"></span></div>
+      </div>
+      <div class="glass card">
+        <div class="lbl muted ux-005" >Missing skills</div>
+        <div class="ux-060" id="k-missing">5</div>
+        <div class="dim ux-005" >2 critical · 3 recommended</div>
+      </div>
+      <div class="glass card">
+        <div class="lbl muted ux-005" >Est. time to close</div>
+        <div class="ux-060" id="k-time">~14 weeks</div>
+        <div class="dim ux-005" >at 6 hrs/week study</div>
+      </div>
+    </div>
+
+    <div class="grid grid-2 ux-037" >
+      <div class="glass card-lg">
+        <h3>Skill radar</h3>
+        <p class="ux-021">You (purple) vs industry benchmark (blue).</p>
+        <div id="radar" class="ux-085"></div>
+      </div>
+
+      <div class="glass card-lg">
+        <div class="flex between center ux-032" >
+          <h3>Skill breakdown</h3>
+          <span class="chip">You vs benchmark</span>
+        </div>
+        <div id="bars"></div>
+      </div>
+    </div>
+
+    <div class="glass card-lg ux-037" >
+      <div class="flex between center ux-025" >
+        <h3>Missing skills — prioritized</h3>
+        <a href="roadmap.html" class="chip solid">Generate roadmap →</a>
+      </div>
+      <table class="table">
+        <thead><tr><th>Skill</th><th>Priority</th><th>Difficulty</th><th>Est. time</th><th>Recommended course</th></tr></thead>
+        <tbody id="gap-body"></tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+  document.getElementById("sb").outerHTML = renderSidebar("skill-gap");
+  document.getElementById("tb").outerHTML = renderTopbar();
+
+  const BENCH = {
+    "Data Scientist": [
+      { s:"Python", you:82, need:90 }, { s:"SQL", you:74, need:88 },
+      { s:"Statistics", you:68, need:85 }, { s:"Machine Learning", you:52, need:88 },
+      { s:"Deep Learning", you:30, need:70 }, { s:"Data Viz", you:66, need:80 },
+      { s:"Cloud/AWS", you:34, need:65 }, { s:"Communication", you:60, need:80 }
+    ],
+    "AI/ML Engineer": [
+      { s:"Python", you:82, need:92 }, { s:"ML", you:52, need:90 },
+      { s:"Deep Learning", you:30, need:85 }, { s:"MLOps", you:22, need:75 },
+      { s:"Math", you:60, need:80 }, { s:"Cloud/AWS", you:34, need:75 },
+      { s:"SQL", you:74, need:70 }, { s:"Git", you:70, need:80 }
+    ],
+    "Full-Stack Developer": [
+      { s:"JavaScript", you:64, need:90 }, { s:"React", you:60, need:88 },
+      { s:"Node.js", you:44, need:80 }, { s:"SQL", you:74, need:70 },
+      { s:"HTML/CSS", you:78, need:85 }, { s:"Cloud", you:34, need:65 },
+      { s:"Testing", you:32, need:70 }, { s:"Git", you:70, need:80 }
+    ],
+    "Cloud Engineer": [
+      { s:"AWS", you:34, need:90 }, { s:"Docker", you:40, need:82 },
+      { s:"Kubernetes", you:22, need:78 }, { s:"Linux", you:56, need:82 },
+      { s:"Terraform", you:18, need:70 }, { s:"Python", you:82, need:75 },
+      { s:"Networking", you:38, need:72 }, { s:"CI/CD", you:34, need:76 }
+    ],
+    "Cybersecurity Analyst": [
+      { s:"Networking", you:38, need:85 }, { s:"Linux", you:56, need:82 },
+      { s:"Python", you:82, need:70 }, { s:"SIEM", you:12, need:72 },
+      { s:"Threat Analysis", you:22, need:78 }, { s:"Cloud Sec", you:20, need:70 },
+      { s:"Cryptography", you:32, need:65 }, { s:"OWASP", you:28, need:75 }
+    ]
+  };
+
+  const COURSES = {
+    "Machine Learning":"Coursera · Andrew Ng ML",
+    "Deep Learning":"DeepLearning.AI Specialization",
+    "SQL":"Mode Analytics SQL Tutorial",
+    "Statistics":"Khan Academy Statistics",
+    "Data Viz":"Google Data Studio",
+    "Cloud/AWS":"AWS Cloud Practitioner",
+    "React":"Full Stack Open · Helsinki",
+    "Node.js":"The Odin Project",
+    "Docker":"Docker Mastery · Udemy",
+    "Kubernetes":"Kubernetes for Beginners",
+    "Terraform":"HashiCorp Learn",
+    "SIEM":"Splunk Fundamentals 1",
+    "Threat Analysis":"TryHackMe SOC Level 1",
+    "OWASP":"OWASP Top 10 · PortSwigger",
+    "MLOps":"MLOps Zoomcamp",
+    "Testing":"Testing JavaScript · Kent C. Dodds",
+    "CI/CD":"GitHub Actions in Action",
+    "Cloud Sec":"AWS Security Specialty",
+    "Networking":"CCNA fundamentals",
+    "Linux":"Linux Journey",
+    "Cryptography":"Cryptography I · Coursera",
+    "HTML/CSS":"MDN Web Docs",
+    "JavaScript":"JavaScript.info",
+    "Python":"Python Crash Course",
+    "Communication":"Toastmasters Pathways",
+    "Git":"Pro Git Book",
+    "Math":"MIT OCW 18.06 Linear Algebra"
+  };
+
+  function priorityFor(diff) { return diff >= 40 ? "Critical" : diff >= 20 ? "High" : "Medium"; }
+  function chipFor(p) { return p==="Critical"?"chip bad":p==="High"?"chip warn":"chip"; }
+  function difficulty(need) { return need >= 85 ? "Hard" : need >= 70 ? "Medium" : "Easy"; }
+  function weeks(diff) { return Math.max(2, Math.round(diff / 6)); }
+
+  function drawRadar(data) {
+    const cx = 170, cy = 170, r = 130, n = data.length;
+    const angle = i => (Math.PI * 2 * i / n) - Math.PI/2;
+    const point = (i, val) => {
+      const rr = r * (val/100);
+      return [cx + rr * Math.cos(angle(i)), cy + rr * Math.sin(angle(i))];
+    };
+    const grid = [20,40,60,80,100].map(v => {
+      const pts = data.map((_,i) => point(i, v).join(",")).join(" ");
+      return `<polygon points="${pts}" fill="none" stroke="rgba(255,255,255,.08)"/>`;
+    }).join("");
+    const axes = data.map((d,i) => {
+      const [x,y] = point(i,100);
+      const [tx,ty] = point(i,116);
+      return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(255,255,255,.08)"/>
+              <text x="${tx}" y="${ty}" font-size="10" fill="#a9a9c9" text-anchor="middle">${d.s}</text>`;
+    }).join("");
+    const you = data.map((d,i) => point(i, d.you).join(",")).join(" ");
+    const need = data.map((d,i) => point(i, d.need).join(",")).join(" ");
+    return `
+      <svg viewBox="0 0 340 340" width="100%" class="ux-086">
+        ${grid}${axes}
+        <polygon points="${need}" fill="rgba(74,168,255,.18)" stroke="#4aa8ff" stroke-width="2"/>
+        <polygon points="${you}" fill="rgba(124,92,255,.28)" stroke="#7c5cff" stroke-width="2"/>
+      </svg>
+      <div class="flex gap ux-087" >
+        <span class="chip"><span class="ux-088"></span> You</span>
+        <span class="chip"><span class="ux-089"></span> Benchmark</span>
+      </div>
+    `;
+  }
+
+  function render() {
+    const role = document.getElementById("target").value;
+    const data = BENCH[role];
+    document.getElementById("radar").innerHTML = drawRadar(data);
+
+    document.getElementById("bars").innerHTML = data.map(d => `
+      <div class="bar-row">
+        <div class="lbl">${d.s}</div>
+        <div class="ux-090">
+          <div class="bar ux-091"><span class="bar-fill bar-fill-need" data-width="${d.need}"></span></div>
+          <div class="bar ux-092"><span class="bar-fill bar-fill-you" data-width="${d.you}"></span></div>
+        </div>
+        <div class="val">${d.you}/${d.need}</div>
+      </div>
+    `).join("");
+    document.querySelectorAll(".bar-fill[data-width]").forEach(el => {
+      const width = el.dataset.width;
+      if (width) el.style.width = `${width}%`;
+    });
+
+    const gaps = data.filter(d => d.need - d.you > 8).sort((a,b) => (b.need-b.you) - (a.need-a.you));
+    document.getElementById("k-owned").textContent = `${data.length - gaps.length} / ${data.length}`;
+    document.getElementById("p-owned").style.width = Math.round((data.length - gaps.length) / data.length * 100) + "%";
+    document.getElementById("k-missing").textContent = gaps.length;
+    const totalWeeks = gaps.reduce((s,g) => s + weeks(g.need - g.you), 0);
+    document.getElementById("k-time").textContent = `~${totalWeeks} weeks`;
+
+    document.getElementById("gap-body").innerHTML = gaps.map(g => {
+      const diff = g.need - g.you;
+      const pr = priorityFor(diff);
+      return `<tr>
+        <td><strong>${g.s}</strong></td>
+        <td><span class="${chipFor(pr)}">${pr}</span></td>
+        <td>${difficulty(g.need)}</td>
+        <td>${weeks(diff)} wks</td>
+        <td class="dim">${COURSES[g.s] || "Curated learning path"}</td>
+      </tr>`;
+    }).join("");
+  }
+
+  document.getElementById("target").onchange = render;
+  render();
+</script>
+</body>
+</html>

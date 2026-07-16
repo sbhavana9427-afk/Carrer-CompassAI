@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Career Compass 4.0 — AI-Powered Career Guidance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">C</span>
+      Career Compass <span class="badge ux-001" >4.0</span>
+    </a>
+    <button class="icon-btn nav-toggle" onclick="toggleNav()" title="Open menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#careers">Careers</a>
+      <a href="#stories">Stories</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="flex gap-sm">
+      <button class="icon-btn" onclick="toggleTheme()" title="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <a href="pages/dashboard.html" class="btn btn-sm btn-ghost">Sign in</a>
+      <a href="pages/dashboard.html" class="btn btn-primary btn-sm">Get started →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">✨ AI Career Recommendation Engine • Live</span>
+      <h1>Empowering students with <span class="gradient-text">AI-driven career decisions.</span></h1>
+      <p class="lead">Career Compass 4.0 helps you discover the right career, close skill gaps, build a portfolio, and land placements — with an AI companion trained on 10,000+ career paths and real-time industry data.</p>
+      <div class="flex gap wrap ux-002" >
+        <a href="pages/recommendation.html" class="btn btn-primary">Start free assessment →</a>
+        <a href="pages/dashboard.html" class="btn">Explore dashboard</a>
+      </div>
+      <div class="flex gap-lg wrap ux-003" >
+        <div><div class="ux-004">120K+</div><div class="muted ux-005" >Students guided</div></div>
+        <div><div class="ux-004">98%</div><div class="muted ux-005" >Match accuracy</div></div>
+        <div><div class="ux-004">2,400+</div><div class="muted ux-005" >Hiring partners</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="tile big">
+        <div class="tile-title">🎯 Career Match — Data Scientist</div>
+        <div class="dim ux-006" >Based on your profile, skills & market demand</div>
+        <div class="progress"><span class="ux-007"></span></div>
+        <div class="ux-008">
+          <span class="muted">Fit score</span><strong>92 / 100</strong>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="tile-title">📈 Placement Readiness</div>
+        <div class="ux-009">78</div>
+        <div class="dim ux-010" >+6 this week</div>
+      </div>
+      <div class="tile">
+        <div class="tile-title">🧠 Personality</div>
+        <div class="ux-011">Investigative • Analytical</div>
+        <div class="dim ux-010" >RIASEC · INTJ</div>
+      </div>
+      <div class="tile big">
+        <div class="tile-title">🛣️ Next on roadmap</div>
+        <div class="flex gap-sm wrap ux-012" >
+          <span class="chip">SQL Advanced</span>
+          <span class="chip">ML Foundations</span>
+          <span class="chip">Kaggle Project</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BRANDS -->
+<section class="ux-013">
+  <div class="container">
+    <div class="dim ux-014" >Students placed at</div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="brand">Google</span><span class="brand">Microsoft</span><span class="brand">Amazon</span>
+        <span class="brand">TCS</span><span class="brand">Infosys</span><span class="brand">Wipro</span>
+        <span class="brand">Zoho</span><span class="brand">Deloitte</span><span class="brand">Accenture</span>
+        <span class="brand">Flipkart</span><span class="brand">Swiggy</span><span class="brand">Freshworks</span>
+        <span class="brand">Google</span><span class="brand">Microsoft</span><span class="brand">Amazon</span>
+        <span class="brand">TCS</span><span class="brand">Infosys</span><span class="brand">Wipro</span>
+        <span class="brand">Zoho</span><span class="brand">Deloitte</span><span class="brand">Accenture</span>
+        <span class="brand">Flipkart</span><span class="brand">Swiggy</span><span class="brand">Freshworks</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="section">
+  <div class="container">
+    <div class="ux-015">
+      <span class="badge"><span class="dot"></span> Everything you need</span>
+      <h2 class="ux-016">One platform. <span class="gradient-text">Every step of your career.</span></h2>
+      <p>From personality mapping to placement readiness — Career Compass 4.0 is the AI copilot that grows with you.</p>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="feature">
+        <div class="ico">🧭</div>
+        <h3>AI Career Recommendation</h3>
+        <p>Personalized career paths based on academics, interests, skills, personality and real-time job market trends.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🧪</div>
+        <h3>Personality & Skill Tests</h3>
+        <p>RIASEC, MBTI, Big Five, learning style + auto-evaluated skill assessments across 10+ domains.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🎯</div>
+        <h3>Skill Gap Analysis</h3>
+        <p>Compare your skills to industry demand and see missing skills, priority, difficulty and learning time.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🛣️</div>
+        <h3>AI Learning Roadmap</h3>
+        <p>Auto-generated roadmap with courses, projects, internships and timelines — updated as you progress.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📄</div>
+        <h3>Resume ATS Checker</h3>
+        <p>Upload your resume for grammar, keyword, ATS and formatting analysis with instant fix suggestions.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🎙️</div>
+        <h3>AI Mock Interview</h3>
+        <p>Simulated interviews scoring technical, communication and confidence — with actionable feedback.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📊</div>
+        <h3>Placement Readiness Score</h3>
+        <p>A single 0–100 score computed from your projects, skills, resume, coding, communication and internships.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">💬</div>
+        <h3>Career Chatbot</h3>
+        <p>24/7 AI mentor that answers "how do I become…?", "what salary…?", "which certifications…?" — instantly.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🌐</div>
+        <h3>Career Digital Twin</h3>
+        <p>A virtual you that predicts salary, growth and promotion timeline as you level up your skills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section ux-017" >
+  <div class="container">
+    <div class="ux-015">
+      <span class="badge">How it works</span>
+      <h2 class="ux-016">From confusion to <span class="gradient-text">career clarity</span> in 4 steps.</h2>
+    </div>
+    <div class="grid grid-4 ux-018" >
+      <div class="step"><div class="n">1</div><h3 class="ux-016">Profile</h3><p>Add academics, interests, and take personality + skill tests.</p></div>
+      <div class="step"><div class="n">2</div><h3 class="ux-016">AI Match</h3><p>Get top career paths ranked by fit, demand and salary.</p></div>
+      <div class="step"><div class="n">3</div><h3 class="ux-016">Roadmap</h3><p>Follow a personalized skill & project roadmap.</p></div>
+      <div class="step"><div class="n">4</div><h3 class="ux-016">Place</h3><p>Apply to matched internships, jobs & higher studies.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers" class="section ux-017" >
+  <div class="container">
+    <div class="flex between wrap gap ux-019" >
+      <div>
+        <span class="badge">Trending careers 2026</span>
+        <h2 class="ux-020">Explore <span class="gradient-text">high-growth</span> paths.</h2>
+      </div>
+      <a href="pages/recommendation.html" class="btn">See all careers →</a>
+    </div>
+    <div class="grid grid-3">
+      <div class="glass card hover-lift">
+        <div class="flex between center"><h3>AI/ML Engineer</h3><span class="chip good">🔥 Hot</span></div>
+        <p class="ux-021">Design ML systems that power products used by millions.</p>
+        <div class="divider"></div>
+        <div class="flex between"><span class="muted ux-006" >Avg salary</span><strong>₹18–34 LPA</strong></div>
+        <div class="flex between"><span class="muted ux-006" >Growth</span><strong class="ux-022">+38% YoY</strong></div>
+      </div>
+      <div class="glass card hover-lift">
+        <div class="flex between center"><h3>Data Scientist</h3><span class="chip solid">92% match</span></div>
+        <p class="ux-021">Turn data into insights with statistics, ML and storytelling.</p>
+        <div class="divider"></div>
+        <div class="flex between"><span class="muted ux-006" >Avg salary</span><strong>₹14–28 LPA</strong></div>
+        <div class="flex between"><span class="muted ux-006" >Growth</span><strong class="ux-022">+31% YoY</strong></div>
+      </div>
+      <div class="glass card hover-lift">
+        <div class="flex between center"><h3>Cloud Architect</h3><span class="chip warn">In demand</span></div>
+        <p class="ux-021">Design scalable systems on AWS, GCP and Azure.</p>
+        <div class="divider"></div>
+        <div class="flex between"><span class="muted ux-006" >Avg salary</span><strong>₹22–42 LPA</strong></div>
+        <div class="flex between"><span class="muted ux-006" >Growth</span><strong class="ux-022">+24% YoY</strong></div>
+      </div>
+      <div class="glass card hover-lift">
+        <div class="flex between center"><h3>Cybersecurity Analyst</h3><span class="chip">Trending</span></div>
+        <p class="ux-021">Defend systems, networks and data against threats.</p>
+        <div class="divider"></div>
+        <div class="flex between"><span class="muted ux-006" >Avg salary</span><strong>₹12–24 LPA</strong></div>
+        <div class="flex between"><span class="muted ux-006" >Growth</span><strong class="ux-022">+29% YoY</strong></div>
+      </div>
+      <div class="glass card hover-lift">
+        <div class="flex between center"><h3>Full-Stack Developer</h3><span class="chip">Evergreen</span></div>
+        <p class="ux-021">Ship end-to-end products with React, Node and cloud.</p>
+        <div class="divider"></div>
+        <div class="flex between"><span class="muted ux-006" >Avg salary</span><strong>₹10–22 LPA</strong></div>
+        <div class="flex between"><span class="muted ux-006" >Growth</span><strong class="ux-022">+18% YoY</strong></div>
+      </div>
+      <div class="glass card hover-lift">
+        <div class="flex between center"><h3>Product Manager</h3><span class="chip">Cross-domain</span></div>
+        <p class="ux-021">Lead product strategy, roadmap and delivery.</p>
+        <div class="divider"></div>
+        <div class="flex between"><span class="muted ux-006" >Avg salary</span><strong>₹16–32 LPA</strong></div>
+        <div class="flex between"><span class="muted ux-006" >Growth</span><strong class="ux-022">+22% YoY</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section ux-017" >
+  <div class="container">
+    <div class="glass card-lg">
+      <div class="grid grid-4">
+        <div class="stat"><div class="num gradient-text">120K+</div><div class="lbl">Students guided</div></div>
+        <div class="stat"><div class="num gradient-text">98%</div><div class="lbl">Match accuracy</div></div>
+        <div class="stat"><div class="num gradient-text">2,400+</div><div class="lbl">Hiring partners</div></div>
+        <div class="stat"><div class="num gradient-text">4.9★</div><div class="lbl">Student rating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section id="stories" class="section ux-017" >
+  <div class="container">
+    <div class="ux-015">
+      <span class="badge">Success stories</span>
+      <h2 class="ux-016">Students who found <span class="gradient-text">their compass.</span></h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="glass testimonial">
+        <p>"I was torn between CS and design. Career Compass matched me to Product Design and built a roadmap. Landed an internship at Zoho in 4 months."</p>
+        <div class="flex gap center"><div class="avatar">RK</div><div><strong>Rohan K.</strong><div class="muted ux-006" >Product Designer @ Zoho</div></div></div>
+      </div>
+      <div class="glass testimonial">
+        <p>"The AI mock interview gave me the exact feedback my seniors never did. I fixed my communication and cracked Amazon SDE."</p>
+        <div class="flex gap center"><div class="avatar">PS</div><div><strong>Priya S.</strong><div class="muted ux-006" >SDE-1 @ Amazon</div></div></div>
+      </div>
+      <div class="glass testimonial">
+        <p>"Skill Gap Analysis showed me I lacked SQL and stats. The roadmap took me from 42 to 88 placement readiness in one semester."</p>
+        <div class="flex gap center"><div class="avatar">AM</div><div><strong>Arjun M.</strong><div class="muted ux-006" >Data Analyst @ Freshworks</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section ux-017" >
+  <div class="container">
+    <div class="glass card-lg ux-023" >
+      <span class="badge"><span class="dot"></span> Free forever plan</span>
+      <h2 class="ux-016">Ready to find your <span class="gradient-text">career compass?</span></h2>
+      <p class="ux-024">Join 120,000+ students discovering AI-powered career clarity, roadmaps and placements.</p>
+      <div class="flex gap center wrap">
+        <a href="pages/recommendation.html" class="btn btn-primary">Take the assessment →</a>
+        <a href="pages/dashboard.html" class="btn">Explore dashboard</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section ux-017" >
+  <div class="container">
+    <div class="ux-015">
+      <span class="badge">FAQ</span>
+      <h2 class="ux-016">Answers to your <span class="gradient-text">first questions.</span></h2>
+    </div>
+    <div class="grid grid-2">
+      <div class="glass card"><h3>Is Career Compass free?</h3><p>Yes — students get free access to assessments, roadmaps and the AI chatbot. Premium unlocks mock interviews and mentorship.</p></div>
+      <div class="glass card"><h3>How is my match calculated?</h3><p>We combine academics, interests, personality (RIASEC + Big Five), skills, projects and real-time industry demand.</p></div>
+      <div class="glass card"><h3>Can I use it after graduation?</h3><p>Absolutely. Career Compass grows with you — from first internship to your next role.</p></div>
+      <div class="glass card"><h3>Do recruiters use it?</h3><p>Yes. Verified recruiters get a portal to post jobs and access placement-ready student profiles.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="cols">
+      <div>
+        <a href="index.html" class="logo ux-025" >
+          <span class="logo-mark">C</span> Career Compass <span class="badge">4.0</span>
+        </a>
+        <p class="ux-026">Empowering students with AI-driven career decisions. Built for the next generation of learners.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="pages/dashboard.html">Dashboard</a>
+        <a href="pages/roadmap.html">Roadmap</a>
+        <a href="pages/resume.html">Resume ATS</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+    <div class="legal">
+      <div>© 2026 Career Compass. All rights reserved.</div>
+      <div class="flex gap">
+        <a href="#">Twitter</a><a href="#">LinkedIn</a><a href="#">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/app.js"></script>
+</body>
+</html>

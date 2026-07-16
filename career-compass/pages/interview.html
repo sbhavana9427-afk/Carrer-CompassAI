@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mock Interview — Career Compass 4.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css"/></head>
+<body><div class="app"><div id="sb"></div><main class="main"><div id="tb"></div>
+
+<h1 class="page-title">AI Mock Interview</h1>
+<p class="page-sub">Practice with adaptive questions. Get real-time scoring on technical, communication and confidence.</p>
+
+<div class="grid grid-3 ux-016" >
+  <div class="glass card"><div class="muted ux-005" >Technical</div><div class="ux-060">82</div><div class="progress"><span class="ux-043"></span></div></div>
+  <div class="glass card"><div class="muted ux-005" >Communication</div><div class="ux-060">66</div><div class="progress"><span class="ux-047"></span></div></div>
+  <div class="glass card"><div class="muted ux-005" >Confidence</div><div class="ux-060">74</div><div class="progress"><span class="ux-044"></span></div></div>
+</div>
+
+<div class="grid grid-2 ux-037" >
+  <div class="glass card-lg">
+    <div class="flex between center ux-032" >
+      <h3>Current question</h3><span class="chip warn">Q4 of 10 · Data Science</span>
+    </div>
+    <p class="ux-061">"Explain the bias-variance tradeoff. When would you accept higher bias?"</p>
+    <textarea placeholder="Type or record your answer…" class="ux-062"></textarea>
+    <div class="flex between ux-020" >
+      <div class="flex gap-sm">
+        <button class="btn btn-sm">🎙️ Record</button>
+        <button class="btn btn-sm">Skip</button>
+      </div>
+      <button class="btn btn-primary btn-sm">Submit answer →</button>
+    </div>
+  </div>
+  <div class="glass card-lg">
+    <h3>Live feedback</h3>
+    <div class="grid gap ux-020" >
+      <div class="glass card"><div class="flex between"><strong>Structure</strong><span class="chip good">Strong</span></div><p class="dim ux-063" >Clear problem → definition → tradeoff → example.</p></div>
+      <div class="glass card"><div class="flex between"><strong>Pace</strong><span class="chip warn">Slow down</span></div><p class="dim ux-063" >You spoke 187 wpm — target 140–160.</p></div>
+      <div class="glass card"><div class="flex between"><strong>Filler words</strong><span class="chip warn">6 detected</span></div><p class="dim ux-063" >"um" (3), "like" (2), "you know" (1).</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="glass card-lg ux-037" >
+  <h3>Past sessions</h3>
+  <table class="table ux-057" >
+    <thead><tr><th>Date</th><th>Role</th><th>Score</th><th>Duration</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Feb 12, 2026</td><td>Data Scientist</td><td><span class="chip good">78</span></td><td>32 min</td><td><a class="btn btn-sm">Review</a></td></tr>
+      <tr><td>Feb 05, 2026</td><td>Data Scientist</td><td><span class="chip warn">64</span></td><td>28 min</td><td><a class="btn btn-sm">Review</a></td></tr>
+      <tr><td>Jan 22, 2026</td><td>Data Analyst</td><td><span class="chip">70</span></td><td>25 min</td><td><a class="btn btn-sm">Review</a></td></tr>
+    </tbody>
+  </table>
+</div>
+
+</main></div>
+<script src="../assets/js/app.js"></script>
+<script>
+  document.getElementById("sb").outerHTML = renderSidebar("interview");
+  document.getElementById("tb").outerHTML = renderTopbar();
+</script></body></html>

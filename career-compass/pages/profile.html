@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>My Profile — Career Compass 4.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css"/></head>
+<body><div class="app"><div id="sb"></div><main class="main"><div id="tb"></div>
+
+<h1 class="page-title">My Profile</h1>
+<p class="page-sub">Keep your profile up to date — it powers every AI recommendation.</p>
+
+<div class="grid grid-3 ux-016" >
+  <div class="glass card-lg ux-064" >
+    <div class="avatar ux-065" >AR</div>
+    <h3 class="ux-066">Ananya Rao</h3>
+    <div class="dim ux-021" >B.E. Computer Science · Semester 6</div>
+    <div class="flex gap-sm center ux-020" >
+      <span class="chip good">Verified</span><span class="chip">Chennai, IN</span>
+    </div>
+    <div class="divider"></div>
+    <div class="flex between"><span class="muted ux-005" >Profile completeness</span><strong>86%</strong></div>
+    <div class="progress ux-035" ><span class="ux-067"></span></div>
+  </div>
+
+  <div class="glass card-lg ux-068" >
+    <h3>Academic details</h3>
+    <div class="grid grid-2 gap ux-020" >
+      <div><label for="college">College</label><input id="college" type="text" value="Anna University, CEG" placeholder="Anna University, CEG" title="College"/></div>
+      <div><label for="degree">Degree</label><input id="degree" type="text" value="B.E. Computer Science" placeholder="B.E. Computer Science" title="Degree"/></div>
+      <div><label for="cgpa-profile">CGPA</label><input id="cgpa-profile" type="number" value="8.6" step="0.1" placeholder="8.6" title="CGPA"/></div>
+      <div><label for="graduation">Expected graduation</label><input id="graduation" type="text" value="May 2026" placeholder="May 2026" title="Expected graduation"/></div>
+      <div><label for="personality">Personality</label><input id="personality" type="text" value="Investigative · INTJ" placeholder="Investigative · INTJ" title="Personality"/></div>
+      <div><label for="career-goal">Career goal</label><input id="career-goal" type="text" value="Data Scientist" placeholder="Data Scientist" title="Career goal"/></div>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-2 ux-037" >
+  <div class="glass card-lg">
+    <h3>Skills</h3>
+    <div class="tag-cloud ux-057" >
+      <span class="chip solid">Python</span><span class="chip solid">SQL</span><span class="chip solid">Statistics</span>
+      <span class="chip">Pandas</span><span class="chip">Excel</span><span class="chip">Tableau</span>
+      <span class="chip">Git</span><span class="chip">JavaScript</span><span class="chip">React</span>
+    </div>
+    <div class="divider"></div>
+    <h3>Interests</h3>
+    <div class="tag-cloud ux-057" >
+      <span class="chip solid">Data Science</span><span class="chip solid">AI/ML</span><span class="chip">Statistics</span><span class="chip">Product</span>
+    </div>
+  </div>
+  <div class="glass card-lg">
+    <h3>Projects & experience</h3>
+    <div class="grid gap ux-057" >
+      <div class="glass card"><strong>Movie Recommendation System</strong><p class="dim ux-069" >Collaborative filtering · Python, Streamlit</p></div>
+      <div class="glass card"><strong>Sales Dashboard</strong><p class="dim ux-069" >SQL + Tableau · sold to college project fair</p></div>
+      <div class="glass card"><strong>Data Analyst Intern — Freshworks</strong><p class="dim ux-069" >May–Jul 2025 · Chennai</p></div>
+    </div>
+  </div>
+</div>
+
+</main></div>
+<script src="../assets/js/app.js"></script>
+<script>
+  document.getElementById("sb").outerHTML = renderSidebar("profile");
+  document.getElementById("tb").outerHTML = renderTopbar();
+</script></body></html>

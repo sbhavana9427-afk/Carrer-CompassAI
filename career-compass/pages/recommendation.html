@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AI Career Recommendation — Career Compass 4.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+<div class="app">
+  <div id="sb"></div>
+  <main class="main">
+    <div id="tb"></div>
+
+    <h1 class="page-title">AI Career Recommendation</h1>
+    <p class="page-sub">Get personalized career paths ranked by fit, market demand and growth.</p>
+
+    <div class="grid grid-2">
+      <!-- Left: assessment inputs -->
+      <div class="glass card-lg">
+        <h3>Your profile</h3>
+        <p class="ux-021">Adjust inputs — recommendations update instantly.</p>
+
+        <div class="grid gap ux-016" >
+          <div>
+            <label for="stream">Academic stream</label>
+            <select id="stream" title="Academic stream">
+              <option>Computer Science</option>
+              <option>Electronics</option>
+              <option>Mechanical</option>
+              <option>Business / Commerce</option>
+              <option>Life Sciences</option>
+            </select>
+          </div>
+          <div>
+            <label for="cgpa">CGPA</label>
+            <input id="cgpa" type="number" step="0.1" min="0" max="10" value="8.6" placeholder="8.6" title="CGPA" />
+          </div>
+          <div>
+            <label for="riasec">Personality (RIASEC)</label>
+            <select id="riasec" title="Personality (RIASEC)">
+              <option>Investigative</option>
+              <option>Realistic</option>
+              <option>Artistic</option>
+              <option>Social</option>
+              <option>Enterprising</option>
+              <option>Conventional</option>
+            </select>
+          </div>
+          <div>
+            <label>Interests</label>
+            <div class="tag-cloud" id="interests">
+              <button class="chip solid" data-v="data">Data</button>
+              <button class="chip solid" data-v="ai">AI/ML</button>
+              <button class="chip" data-v="design">Design</button>
+              <button class="chip" data-v="web">Web</button>
+              <button class="chip" data-v="cloud">Cloud</button>
+              <button class="chip solid" data-v="statistics">Statistics</button>
+              <button class="chip" data-v="security">Security</button>
+              <button class="chip" data-v="mobile">Mobile</button>
+              <button class="chip" data-v="business">Business</button>
+            </div>
+          </div>
+          <div>
+            <label>Strongest skills</label>
+            <div class="tag-cloud" id="skills">
+              <button class="chip solid" data-v="python">Python</button>
+              <button class="chip solid" data-v="sql">SQL</button>
+              <button class="chip" data-v="js">JavaScript</button>
+              <button class="chip" data-v="react">React</button>
+              <button class="chip solid" data-v="stats">Stats</button>
+              <button class="chip" data-v="aws">AWS</button>
+              <button class="chip" data-v="figma">Figma</button>
+              <button class="chip" data-v="excel">Excel</button>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="flex between">
+          <span class="muted ux-005" >Powered by Career Compass AI Engine v4</span>
+          <button class="btn btn-primary btn-sm" onclick="recompute()">Recompute →</button>
+        </div>
+      </div>
+
+      <!-- Right: results -->
+      <div>
+        <div class="glass card-lg ux-070" >
+          <div class="flex between center">
+            <div>
+              <h3>Top match</h3>
+              <div class="ux-009" id="top-name">Data Scientist</div>
+              <div class="muted ux-021"  id="top-reason">Strong fit with your analytical skills, stats and Python.</div>
+            </div>
+            <div class="ring ux-071" ><div class="inner"><div class="n" id="top-score">92</div><div class="l">match</div></div></div>
+          </div>
+          <div class="divider"></div>
+          <div class="grid grid-3">
+            <div><div class="muted ux-034" >Avg salary</div><strong id="top-salary">₹14–28 LPA</strong></div>
+            <div><div class="muted ux-034" >Growth</div><strong class="ux-022" id="top-growth">+31% YoY</strong></div>
+            <div><div class="muted ux-034" >Roles open</div><strong id="top-open">18,400</strong></div>
+          </div>
+        </div>
+
+        <div class="glass card-lg">
+          <div class="flex between center ux-025" >
+            <h3>All recommendations</h3>
+            <span class="chip">Ranked by fit</span>
+          </div>
+          <div id="rec-list" class="grid gap"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass card-lg ux-037" >
+      <div class="flex between center ux-032" >
+        <h3>Why these matches?</h3>
+        <span class="chip">Explainable AI</span>
+      </div>
+      <div class="grid grid-3">
+        <div class="glass card"><div class="chip good">Signal · Academics</div><p class="ux-072">CGPA 8.6 in Computer Science boosts analytical roles by <strong>+18%</strong>.</p></div>
+        <div class="glass card"><div class="chip good">Signal · Personality</div><p class="ux-072">Investigative type strongly aligns with research-heavy careers (+22%).</p></div>
+        <div class="glass card"><div class="chip good">Signal · Skills</div><p class="ux-072">Python + SQL + Statistics unlock 62% of data-oriented roles.</p></div>
+        <div class="glass card"><div class="chip warn">Gap · Cloud</div><p class="ux-072">Adding AWS/GCP could raise ML Engineer match from 87 → 93.</p></div>
+        <div class="glass card"><div class="chip warn">Gap · Deep Learning</div><p class="ux-072">TensorFlow/PyTorch would open Applied Research paths.</p></div>
+        <div class="glass card"><div class="chip">Market · Demand</div><p class="ux-072">Data roles hiring +31% YoY in your region (India, S. Asia).</p></div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+  document.getElementById("sb").outerHTML = renderSidebar("recommendation");
+  document.getElementById("tb").outerHTML = renderTopbar();
+
+  // Career catalog with skill/interest signatures
+  const CAREERS = [
+    { name:"Data Scientist", salary:"₹14–28 LPA", growth:"+31% YoY", open:"18,400",
+      req:{python:2,sql:2,stats:2,ai:1,data:2}, reason:"Analytical, Python + stats, high market demand." },
+    { name:"AI/ML Engineer", salary:"₹18–34 LPA", growth:"+38% YoY", open:"12,900",
+      req:{python:2,ai:2,stats:1,aws:1}, reason:"Strong Python + AI interest; grows with cloud + deep learning." },
+    { name:"Data Analyst", salary:"₹8–18 LPA", growth:"+22% YoY", open:"24,100",
+      req:{sql:2,excel:1,stats:1,data:2}, reason:"Excellent entry point with SQL, stats and business sense." },
+    { name:"Business Analyst", salary:"₹9–19 LPA", growth:"+19% YoY", open:"15,600",
+      req:{excel:1,sql:1,business:2}, reason:"Bridges tech and business with strong analytical thinking." },
+    { name:"Full-Stack Developer", salary:"₹10–22 LPA", growth:"+18% YoY", open:"31,200",
+      req:{js:2,react:2,web:2}, reason:"Ship end-to-end products with JavaScript & React." },
+    { name:"Cloud Engineer", salary:"₹14–26 LPA", growth:"+24% YoY", open:"11,300",
+      req:{aws:2,cloud:2,python:1}, reason:"Design scalable systems on AWS, GCP and Azure." },
+    { name:"Cybersecurity Analyst", salary:"₹12–24 LPA", growth:"+29% YoY", open:"9,800",
+      req:{security:2,python:1}, reason:"Defend networks and data; high demand across sectors." },
+    { name:"Product Designer", salary:"₹10–20 LPA", growth:"+16% YoY", open:"6,400",
+      req:{figma:2,design:2}, reason:"Blend creativity with user research and prototyping." },
+    { name:"Mobile Developer", salary:"₹10–20 LPA", growth:"+14% YoY", open:"8,900",
+      req:{mobile:2,js:1}, reason:"Build iOS/Android apps with Kotlin, Swift or React Native." },
+    { name:"Product Manager", salary:"₹16–32 LPA", growth:"+22% YoY", open:"7,200",
+      req:{business:2,web:1,data:1}, reason:"Lead product strategy across engineering and design." }
+  ];
+
+  const state = {
+    interests: new Set(["data","ai","statistics"]),
+    skills: new Set(["python","sql","stats"]),
+    cgpa: 8.6,
+    riasec: "Investigative"
+  };
+
+  function bindTags(id, set) {
+    document.querySelectorAll(`#${id} .chip`).forEach(el => {
+      el.onclick = () => {
+        const v = el.dataset.v;
+        if (set.has(v)) { set.delete(v); el.classList.remove("solid"); }
+        else { set.add(v); el.classList.add("solid"); }
+        recompute();
+      };
+    });
+  }
+  bindTags("interests", state.interests);
+  bindTags("skills", state.skills);
+  document.getElementById("cgpa").oninput = e => { state.cgpa = parseFloat(e.target.value)||0; recompute(); };
+  document.getElementById("riasec").onchange = e => { state.riasec = e.target.value; recompute(); };
+  document.getElementById("stream").onchange = () => recompute();
+
+  function scoreCareer(c) {
+    let s = 40;
+    for (const k in c.req) {
+      const w = c.req[k];
+      if (state.skills.has(k)) s += 8 * w;
+      if (state.interests.has(k)) s += 5 * w;
+    }
+    s += Math.min(20, (state.cgpa - 6) * 5);
+    if (state.riasec === "Investigative" && ["Data Scientist","AI/ML Engineer","Cybersecurity Analyst"].includes(c.name)) s += 6;
+    if (state.riasec === "Artistic" && ["Product Designer"].includes(c.name)) s += 8;
+    if (state.riasec === "Enterprising" && ["Product Manager","Business Analyst"].includes(c.name)) s += 8;
+    return Math.max(35, Math.min(99, Math.round(s)));
+  }
+
+  function recompute() {
+    const ranked = CAREERS
+      .map(c => ({...c, score: scoreCareer(c)}))
+      .sort((a,b) => b.score - a.score);
+
+    const top = ranked[0];
+    document.getElementById("top-name").textContent = top.name;
+    document.getElementById("top-score").textContent = top.score;
+    document.getElementById("top-salary").textContent = top.salary;
+    document.getElementById("top-growth").textContent = top.growth;
+    document.getElementById("top-open").textContent = top.open;
+    document.getElementById("top-reason").textContent = top.reason;
+    document.querySelector(".ring").style.setProperty("--p", top.score);
+
+    document.getElementById("rec-list").innerHTML = ranked.map(c => `
+      <div class="glass card hover-lift">
+        <div class="flex between center">
+          <div>
+            <div class="ux-051">${c.name}</div>
+            <div class="muted ux-052">${c.salary} · ${c.growth} · ${c.open} openings</div>
+            <div class="ux-073 dim">${c.reason}</div>
+          </div>
+          <div class="ring ring-small" data-score="${c.score}">
+            <div class="inner"><div class="n ux-054">${c.score}</div></div>
+          </div>
+        </div>
+      </div>
+    `).join("");
+    document.querySelectorAll(".ring-small").forEach(ring => {
+      if (ring.dataset.score) ring.style.setProperty("--p", ring.dataset.score);
+    });
+  }
+  recompute();
+</script>
+</body>
+</html>

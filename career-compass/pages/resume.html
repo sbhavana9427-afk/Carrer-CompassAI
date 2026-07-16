@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Resume ATS Checker — Career Compass 4.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+<div class="app">
+  <div id="sb"></div>
+  <main class="main">
+    <div id="tb"></div>
+
+    <div class="flex between wrap gap">
+      <div>
+        <h1 class="page-title">Resume ATS Checker</h1>
+        <p class="page-sub">Upload or paste your resume — get instant ATS score, keyword and grammar analysis.</p>
+      </div>
+      <div class="flex gap-sm">
+        <button class="btn btn-sm">Download report</button>
+        <button class="btn btn-primary btn-sm">Rebuild resume →</button>
+      </div>
+    </div>
+
+    <div class="grid grid-2 ux-037" >
+      <div class="glass card-lg">
+        <h3>Resume input</h3>
+        <p class="ux-021">Paste your resume text or drop a PDF file.</p>
+        <div class="ux-074">
+          <div class="ux-075">📄</div>
+          <div class="ux-076">Drop your resume PDF here</div>
+          <div class="dim ux-005" >or</div>
+          <label class="btn btn-sm ux-035" >Choose file<input type="file" hidden accept=".pdf,.doc,.docx"></label>
+        </div>
+        <label>Or paste text</label>
+        <textarea id="rt" class="ux-077" placeholder="Paste your resume text here…">Ananya Rao
+Bachelor of Engineering in Computer Science · CGPA 8.6
+
+SKILLS: Python, SQL, Pandas, Statistics, Excel, Git, Basic Machine Learning
+
+PROJECTS:
+- Movie Recommendation System using collaborative filtering
+- Sales dashboard with SQL + Tableau
+- Sentiment Analysis of Twitter data with NLTK
+
+EXPERIENCE:
+- Data Analyst Intern at Freshworks (May–Jul 2025)
+  Built weekly executive dashboards, automated data ingestion in Python.
+
+CERTIFICATIONS:
+- Google Data Analytics
+- SQL for Data Science (Coursera)</textarea>
+        <div class="flex between ux-016" >
+          <span class="muted ux-005" >Target role: Data Scientist</span>
+          <button class="btn btn-primary btn-sm" onclick="analyze()">Analyze →</button>
+        </div>
+      </div>
+
+      <div>
+        <div class="glass card-lg ux-070" >
+          <div class="flex between center">
+            <div>
+              <h3>ATS Score</h3>
+              <p class="ux-039">How well your resume passes automated screening.</p>
+            </div>
+            <div class="ring" id="ring" class="ux-078"><div class="inner"><div class="n" id="score">74</div><div class="l">out of 100</div></div></div>
+          </div>
+          <div class="divider"></div>
+          <div class="grid grid-4">
+            <div><div class="muted ux-034" >Keywords</div><strong id="mKw">72%</strong></div>
+            <div><div class="muted ux-034" >Structure</div><strong id="mSt">88%</strong></div>
+            <div><div class="muted ux-034" >Grammar</div><strong id="mGr">92%</strong></div>
+            <div><div class="muted ux-034" >Formatting</div><strong id="mFo">80%</strong></div>
+          </div>
+        </div>
+
+        <div class="glass card-lg">
+          <div class="flex between center ux-025" >
+            <h3>Keyword coverage</h3>
+            <span class="chip">vs Data Scientist JD</span>
+          </div>
+          <div id="kws" class="tag-cloud"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-2 ux-037" >
+      <div class="glass card-lg">
+        <div class="flex between center ux-032" >
+          <h3>Improvement suggestions</h3>
+          <span class="chip warn">4 items</span>
+        </div>
+        <div class="grid gap">
+          <div class="glass card"><div class="flex between"><strong>Add Deep Learning experience</strong><span class="chip bad">Critical</span></div><p class="dim ux-079" >Include a project or coursework mentioning TensorFlow / PyTorch.</p></div>
+          <div class="glass card"><div class="flex between"><strong>Quantify impact</strong><span class="chip warn">High</span></div><p class="dim ux-079" >"Automated data ingestion" → "Automated ingestion saving 6 hrs/week."</p></div>
+          <div class="glass card"><div class="flex between"><strong>Add cloud keyword</strong><span class="chip warn">High</span></div><p class="dim ux-079" >Include AWS or GCP — appears in 68% of matching JDs.</p></div>
+          <div class="glass card"><div class="flex between"><strong>Move certifications up</strong><span class="chip">Medium</span></div><p class="dim ux-079" >Certifications improve early ATS ranking.</p></div>
+        </div>
+      </div>
+      <div class="glass card-lg">
+        <div class="flex between center ux-032" >
+          <h3>Grammar & style</h3>
+          <span class="chip good">2 issues</span>
+        </div>
+        <div class="grid gap">
+          <div class="glass card">
+            <div class="flex between"><strong>Passive voice</strong><span class="chip warn">Style</span></div>
+            <p class="dim ux-079" >"Dashboards were built…" → "Built dashboards…"</p>
+          </div>
+          <div class="glass card">
+            <div class="flex between"><strong>Weak verb</strong><span class="chip warn">Style</span></div>
+            <p class="dim ux-079" >Replace "Worked on" with "Delivered / Shipped / Owned".</p>
+          </div>
+          <div class="glass card">
+            <div class="flex between"><strong>Consistent tense</strong><span class="chip good">OK</span></div>
+            <p class="dim ux-079" >Past-tense usage is consistent across bullets.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+  document.getElementById("sb").outerHTML = renderSidebar("resume");
+  document.getElementById("tb").outerHTML = renderTopbar();
+
+  const JD_KEYWORDS = ["python","sql","statistics","machine learning","deep learning","pandas","numpy","tensorflow","pytorch","aws","tableau","nlp","spark","git","excel","kaggle","visualization","modeling","classification","regression"];
+
+  function analyze() {
+    const text = document.getElementById("rt").value.toLowerCase();
+    let hit = 0;
+    const chips = JD_KEYWORDS.map(k => {
+      const found = text.includes(k);
+      if (found) hit++;
+      return `<span class="chip ${found ? "good" : "bad"}">${found ? "✓" : "✗"} ${k}</span>`;
+    }).join("");
+    document.getElementById("kws").innerHTML = chips;
+
+    const kw = Math.round((hit / JD_KEYWORDS.length) * 100);
+    const st = 85 + Math.round(Math.random()*5);
+    const gr = 90 + Math.round(Math.random()*5);
+    const fo = 78 + Math.round(Math.random()*8);
+    const score = Math.round((kw*0.45 + st*0.15 + gr*0.2 + fo*0.2));
+
+    document.getElementById("mKw").textContent = kw + "%";
+    document.getElementById("mSt").textContent = st + "%";
+    document.getElementById("mGr").textContent = gr + "%";
+    document.getElementById("mFo").textContent = fo + "%";
+    document.getElementById("score").textContent = score;
+    document.getElementById("ring").style.setProperty("--p", score);
+  }
+
+  analyze();
+</script>
+</body>
+</html>

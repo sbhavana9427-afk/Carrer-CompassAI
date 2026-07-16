@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Career Chatbot — Career Compass 4.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+<div class="app">
+  <div id="sb"></div>
+  <main class="main">
+    <div id="tb"></div>
+
+    <div class="flex between wrap gap">
+      <div>
+        <h1 class="page-title">Career Chatbot</h1>
+        <p class="page-sub">Your 24/7 AI career mentor.</p>
+      </div>
+      <span class="chip good"><span class="dot ux-027" ></span> Online</span>
+    </div>
+
+    <div class="chat-wrap ux-016" >
+      <div class="glass chat-list">
+        <div class="flex between center ux-028" ><strong>Conversations</strong><button class="chip">+ New</button></div>
+        <div class="side-link active">📊 Data Science path</div>
+        <div class="side-link">🎓 Higher studies abroad</div>
+        <div class="side-link">💼 Prep for Amazon SDE</div>
+        <div class="side-link">🧪 Which certifications?</div>
+        <div class="side-link">💰 Expected salary</div>
+
+        <div class="divider"></div>
+        <div class="ux-029">Suggested prompts</div>
+        <div class="grid gap ux-030" >
+          <button class="glass card ux-031"  onclick="ask('Which programming language should I learn first?')">Which language to learn first?</button>
+          <button class="glass card ux-031"  onclick="ask('How do I become a Data Scientist?')">How to become a Data Scientist?</button>
+          <button class="glass card ux-031"  onclick="ask('What salary can I expect?')">What salary can I expect?</button>
+          <button class="glass card ux-031"  onclick="ask('Which certifications are useful?')">Which certifications are useful?</button>
+        </div>
+      </div>
+
+      <div class="glass chat-thread">
+        <div class="flex between center ux-032" >
+          <div class="flex gap center">
+            <div class="avatar ux-033" >AI</div>
+            <div><strong>Compass AI</strong><div class="dim ux-034" >Career mentor · v4</div></div>
+          </div>
+          <div class="flex gap-sm">
+            <span class="chip">Data Science</span>
+            <button class="icon-btn" title="Clear"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>
+          </div>
+        </div>
+
+        <div class="messages" id="msgs">
+          <div class="msg bot">
+            Hi Ananya! I've reviewed your profile — <strong>Data Scientist</strong> is your top match (92%). What would you like to explore?
+            <div class="flex gap wrap ux-035" >
+              <span class="chip" onclick="ask('How do I become a Data Scientist?')">How to start?</span>
+              <span class="chip" onclick="ask('What salary can I expect?')">Salary?</span>
+              <span class="chip" onclick="ask('Which certifications are useful?')">Certifications?</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="composer">
+          <input id="inp" placeholder="Ask anything about your career…" onkeydown="if(event.key==='Enter')send()"/>
+          <button class="btn btn-primary" onclick="send()">Send →</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="../assets/js/app.js"></script>
+<script>
+  document.getElementById("sb").outerHTML = renderSidebar("chatbot");
+  document.getElementById("tb").outerHTML = renderTopbar();
+
+  const RESPONSES = [
+    { match:/language.*(learn|start)|which.*language/i, reply:`For your Data Science path, start with <strong>Python</strong> — it's the industry standard for ML, data manipulation and scripting. Follow up with <strong>SQL</strong>, then explore <strong>R</strong> only if statistics-heavy roles interest you.` },
+    { match:/data scientist|data science.*(become|path|start)/i, reply:`Here's a proven path to Data Scientist:<br>1. <strong>Foundations</strong> — Python, SQL, Statistics (2–3 months)<br>2. <strong>Machine Learning</strong> — Andrew Ng's specialization<br>3. <strong>Portfolio</strong> — 3 Kaggle projects + 1 end-to-end deployment<br>4. <strong>Internship</strong> — target Freshworks, Zoho, Deloitte<br>5. <strong>Full-time</strong> — apply once you have 2 shipped projects and 8.0+ CGPA<br>Your current placement readiness is <strong>78/100</strong>.` },
+    { match:/salary|pay|compensation|earn/i, reply:`For a Data Scientist in India, expect:<br>• <strong>Entry (0–1 yr):</strong> ₹6–12 LPA<br>• <strong>Mid (2–4 yr):</strong> ₹14–24 LPA<br>• <strong>Senior (5+ yr):</strong> ₹28–48 LPA<br>Product companies (Google, Amazon, Microsoft) pay ~30–50% more than services companies. Add <strong>MLOps + Cloud</strong> for +₹4–6 LPA premium.` },
+    { match:/certification|certificate/i, reply:`Highest ROI certifications for your path:<br>• <strong>Google Data Analytics Professional Certificate</strong> (Coursera)<br>• <strong>DeepLearning.AI Deep Learning Specialization</strong><br>• <strong>AWS Certified Machine Learning – Specialty</strong><br>• <strong>Microsoft DP-100</strong> Azure Data Scientist<br>Don't chase certificates without projects — recruiters weigh <strong>portfolio</strong> more heavily.` },
+    { match:/internship|intern/i, reply:`Based on your 92% Data Science match, I recommend applying to:<br>• <strong>Freshworks</strong> — Data Science Intern (Chennai) · 94% match<br>• <strong>Zoho</strong> — ML Trainee (Coimbatore) · 91%<br>• <strong>Deloitte</strong> — Data Analyst Intern (Bangalore) · 83%<br>Want me to open these on your Jobs page?` },
+    { match:/roadmap|plan|study/i, reply:`Your active roadmap has 8 milestones — 3 done, currently on <strong>Machine Learning (55%)</strong>. Deep Learning is up next. Head to the Roadmap page to see the full timeline.` }
+  ];
+
+  function reply(q) {
+    for (const r of RESPONSES) if (r.match.test(q)) return r.reply;
+    return `Great question! Here's what I'd suggest based on your profile:<br>• Focus on your top career match (<strong>Data Scientist, 92%</strong>)<br>• Close your skill gaps in <strong>Deep Learning</strong> and <strong>Cloud</strong><br>• Ship 2 more projects to raise your placement readiness above 85<br>Want me to elaborate on any of these?`;
+  }
+
+  function addMsg(text, who) {
+    const el = document.createElement("div");
+    el.className = "msg " + who;
+    el.innerHTML = text;
+    document.getElementById("msgs").appendChild(el);
+    el.scrollIntoView({behavior:"smooth"});
+  }
+
+  function ask(q) {
+    document.getElementById("inp").value = q;
+    send();
+  }
+  function send() {
+    const inp = document.getElementById("inp");
+    const q = inp.value.trim();
+    if (!q) return;
+    addMsg(q, "user");
+    inp.value = "";
+    setTimeout(() => addMsg(reply(q), "bot"), 500);
+  }
+</script>
+</body>
+</html>
